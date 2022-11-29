@@ -21,3 +21,6 @@
 - Banco de Dados
 - Autenticação
 - Hosting
+
+- https://console.firebase.google.com/project/app-autenticacao-d25d1/overview
+  - inserido firebaseConfig (gitignore) - Senac2022
