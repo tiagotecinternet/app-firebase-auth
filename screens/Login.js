@@ -5,7 +5,10 @@ import { useState } from "react";
 import { auth } from "../firebaseConfig";
 
 /* Importando */
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -20,6 +23,29 @@ const Login = ({ navigation }) => {
     signInWithEmailAndPassword(auth, email, senha)
       .then(() => {
         navigation.replace("AreaLogada");
+      })
+      .catch((error) => {
+        /* console.log(error); */
+        let mensagem;
+        switch (error.code) {
+          case "auth/user-not-found":
+            mensagem = "Usuário não encontrado";
+            break;
+          case "auth/wrong-password":
+            mensagem = "Senha incorreta";
+            break;
+          default:
+            mensagem = "Houve um erro, tente novamente mais tarde";
+            break;
+        }
+        Alert.alert("Ops!", mensagem);
+      });
+  };
+
+  const recuperarSenha = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        Alert.alert("Recuperar senha", "Verifique sua caixa de entrada");
       })
       .catch((error) => {
         console.log(error);
@@ -43,6 +69,11 @@ const Login = ({ navigation }) => {
         />
         <View style={estilos.botoes}>
           <Button title="Entre" color="green" onPress={login} />
+          <Button
+            title="Recuperar Senha!"
+            color="blue"
+            onPress={recuperarSenha}
+          />
         </View>
       </View>
     </View>
