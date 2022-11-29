@@ -19,7 +19,7 @@ const Login = ({ navigation }) => {
 
     signInWithEmailAndPassword(auth, email, senha)
       .then(() => {
-        navigation.navigate("AreaLogada");
+        navigation.replace("AreaLogada");
       })
       .catch((error) => {
         console.log(error);
