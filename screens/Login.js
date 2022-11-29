@@ -5,7 +5,10 @@ import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
 import { auth } from "../firebaseConfig";
 
 /* Importamos as funções de autenticação diretamente da lib */
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -40,6 +43,14 @@ const Login = ({ navigation }) => {
       });
   };
 
+  const recuperarSenha = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        Alert.alert("Recuperar senha", "Verifique sua caixa de entrada");
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <View style={estilos.container}>
       <View style={estilos.formulario}>
@@ -58,6 +69,11 @@ const Login = ({ navigation }) => {
 
         <View style={estilos.botoes}>
           <Button title="Entre" color="green" onPress={login} />
+          <Button
+            title="Recuperar senha"
+            color="darkgreen"
+            onPress={recuperarSenha}
+          />
         </View>
       </View>
     </View>
