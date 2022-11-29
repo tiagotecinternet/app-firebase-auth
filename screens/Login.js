@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
 
+/* Importamos os recursos de autenticação através das configurações Firebase */
+import { auth } from "../firebaseConfig";
+
+/* Importamos as funções de autenticação diretamente da lib */
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -10,6 +16,14 @@ const Login = () => {
       Alert.alert("Atenção!", "Você deve preencher todos os campos");
       return; // parar o processo
     }
+
+    signInWithEmailAndPassword(auth, email, senha)
+      .then(() => {
+        console.log("Usuário foi logado!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
