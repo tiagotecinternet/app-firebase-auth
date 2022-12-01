@@ -30,3 +30,11 @@
 2. Em `Login.js` fizemos os imports necessários do `auth` a partir de `firebaseConfig` e das funções `signInWithEmailAndPassword` e `sendPasswordResetEmail` a partir de `firebase/auth`
 3. Em `Login.js` programamos as rotinas necessárias para capturar e-mail, senha e as funções para logar e recuperar senha.
 4. Em `AreaLogada.js` fizemos os imports necessários (`auth` e `signOut`) e programamos a rotina de logout.
+
+## 01/12: o que fizemos?
+
+1. Em `Cadastro.js` fizemos:
+   - imports necessários do `auth` a partir de `firebaseConfig` e das funções `createUserWithEmailAndPassword` a partir de `firebase/auth`
+   - Programação da função `cadastrar` com validação de campos, processo de cadastro com verificações de erro e sucesso.
+2. Em `Login.js`:
+   - Refatoração da função `login` com recursos de loading.
