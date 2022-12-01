@@ -4,7 +4,7 @@ import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
 import { auth } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const Cadastro = () => {
+const Cadastro = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -16,7 +16,22 @@ const Cadastro = () => {
 
     createUserWithEmailAndPassword(auth, email, senha)
       .then(() => {
-        Alert.alert("Cadastro", "Conta criada com sucesso!");
+        Alert.alert("Cadastro", "Conta criada com sucesso!", [
+          {
+            text: "Não, me deixe aqui mesmo",
+            onPress: () => {
+              return false;
+            },
+            style: "cancel",
+          },
+          {
+            text: "Sim, bora lá!",
+            onPress: () => {
+              navigation.replace("AreaLogada");
+            },
+            style: "default",
+          },
+        ]);
       })
       .catch((error) => {
         console.log(error);
