@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
 
 import { auth } from "../firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Cadastro = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,8 @@ const Cadastro = () => {
       Alert.alert("Atenção", "Você deve preencher e-mail e senha");
       return;
     }
+
+    createUserWithEmailAndPassword(auth, email, senha);
   };
 
   return (
