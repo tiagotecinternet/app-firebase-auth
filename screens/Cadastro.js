@@ -14,7 +14,13 @@ const Cadastro = () => {
       return;
     }
 
-    createUserWithEmailAndPassword(auth, email, senha);
+    createUserWithEmailAndPassword(auth, email, senha)
+      .then(() => {
+        Alert.alert("Cadastro", "Conta criada com sucesso!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
