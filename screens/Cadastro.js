@@ -5,7 +5,7 @@ import { useState } from "react";
 import { auth } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const Cadastro = () => {
+const Cadastro = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -16,7 +16,46 @@ const Cadastro = () => {
       return;
     }
 
-    createUserWithEmailAndPassword(auth, email, senha);
+    createUserWithEmailAndPassword(auth, email, senha)
+      .then(() => {
+        Alert.alert("Cadastro criado com Sucesso", "Deseja entrar?", [
+          {
+            text: "Não, me deixe aqui mesmo",
+            onPress: () => {
+              return false;
+            },
+            style: "cancel",
+          },
+          {
+            text: "Sim, bora lá!",
+            onPress: () => {
+              navigation.replace("AreaLogada");
+            },
+            style: "default",
+          },
+        ]);
+      })
+      .catch((error) => {
+        console.log(error);
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            mensagem = "E-mail já cadastrado";
+            break;
+
+          case "auth/weak-password":
+            mensagem = "Senha deve ter pelo menos 6 dígitos";
+            break;
+
+          case "auth/invalid-email":
+            mensagem = "Endereço de e-mail inválido!";
+            break;
+
+          default:
+            mensagem = "Algo deu errado .. tente novamente!";
+            break;
+        }
+        Alert.alert("Atenção!", mensagem);
+      });
   };
 
   return (
