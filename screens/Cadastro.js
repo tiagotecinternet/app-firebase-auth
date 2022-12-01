@@ -20,6 +20,25 @@ const Cadastro = () => {
       })
       .catch((error) => {
         console.log(error);
+        let mensagem;
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            mensagem = "E-mail já cadastrado!";
+            break;
+
+          case "auth/weak-password":
+            mensagem = "Senha deve ter pelo menos 6 dígitos!";
+            break;
+
+          case "auth/invalid-email":
+            mensagem = "Endereço de e-mail inválido!";
+            break;
+
+          default:
+            mensagem = "Algo deu errado... tente novamente!";
+            break;
+        }
+        Alert.alert("Atenção!", mensagem);
       });
   };
 
