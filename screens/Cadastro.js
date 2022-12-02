@@ -9,9 +9,10 @@ import {
 } from "react-native";
 
 import { auth } from "../firebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const Cadastro = ({ navigation }) => {
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,12 @@ const Cadastro = ({ navigation }) => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, senha)
       .then(() => {
+        /* Ao fazer a criação do novo usuário (com email e senha), aproveitamos para atualizar
+        via updateProfile a propriedade do auth que permite adicionar um nome ao usuário */
+        updateProfile(auth.currentUser, {
+          displayName: nome,
+        });
+
         Alert.alert("Cadastro", "Conta criada com sucesso!", [
           {
             text: "Não, me deixe aqui mesmo",
@@ -73,6 +80,11 @@ const Cadastro = ({ navigation }) => {
   return (
     <View style={estilos.container}>
       <View style={estilos.formulario}>
+        <TextInput
+          placeholder="Nome"
+          style={estilos.input}
+          onChangeText={(valor) => setNome(valor)}
+        />
         <TextInput
           placeholder="E-mail"
           style={estilos.input}
