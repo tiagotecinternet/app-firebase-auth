@@ -7,6 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 const Cadastro = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const cadastrar = () => {
     if (!email || !senha) {
@@ -14,6 +15,7 @@ const Cadastro = ({ navigation }) => {
       return;
     }
 
+    setLoading(true);
     createUserWithEmailAndPassword(auth, email, senha)
       .then(() => {
         Alert.alert("Cadastro", "Conta criada com sucesso!", [
@@ -54,7 +56,8 @@ const Cadastro = ({ navigation }) => {
             break;
         }
         Alert.alert("Atenção!", mensagem);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
