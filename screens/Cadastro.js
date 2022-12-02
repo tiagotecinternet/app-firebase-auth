@@ -29,7 +29,10 @@ const Cadastro = ({ navigation }) => {
           {
             text: "Não, me deixe aqui mesmo",
             onPress: () => {
-              return false;
+              // setEmail("");
+              // setSenha("");
+              // return false;
+              navigation.replace("Cadastro");
             },
             style: "cancel",
           },
