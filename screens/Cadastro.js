@@ -1,5 +1,12 @@
 import { sendSignInLinkToEmail } from "firebase/auth";
-import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  Button,
+  StyleSheet,
+  TextInput,
+  View,
+} from "react-native";
 import { useState } from "react";
 
 import { auth } from "../firebaseConfig";
@@ -8,6 +15,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 const Cadastro = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const cadastrar = () => {
     /* Alert.alert("Cadastrar .."); */
@@ -16,13 +24,17 @@ const Cadastro = ({ navigation }) => {
       return;
     }
 
+    setLoading(true);
     createUserWithEmailAndPassword(auth, email, senha)
       .then(() => {
         Alert.alert("Cadastro criado com Sucesso", "Deseja entrar?", [
           {
             text: "Não, me deixe aqui mesmo",
             onPress: () => {
-              return false;
+              /* setEmail("");
+              setSenha("");
+              return false; */
+              navigation.replace("Cadastro");
             },
             style: "cancel",
           },
@@ -55,6 +67,9 @@ const Cadastro = ({ navigation }) => {
             break;
         }
         Alert.alert("Atenção!", mensagem);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -74,7 +89,13 @@ const Cadastro = ({ navigation }) => {
           onChangeText={(valor) => setSenha(valor)}
         />
         <View style={estilos.botoes}>
-          <Button onPress={cadastrar} title="Cadastre-se" color="blue" />
+          <Button
+            disabled={loading}
+            onPress={cadastrar}
+            title="Cadastre-se"
+            color="blue"
+          />
+          {loading && <ActivityIndicator size="large" color="blue" />}
         </View>
       </View>
     </View>
