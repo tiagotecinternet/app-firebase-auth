@@ -4,12 +4,12 @@ const Inicial = ({ navigation }) => {
     return (
         <View style={estilos.container}>
             <View style={estilos.introducao}>
-                <Text style={estilos.titulo}>React Native</Text>
+                <Text style={estilos.titulo}>App Auth</Text>
                 <Text style={estilos.subtitulo}>Autenticação com Firebase</Text>
             </View>
             <View style={estilos.botoes}>
-                <Button title='Entre' color="green" onPress={() => navigation.navigate("Login")} />
-                <Button title='Cadastre-se' color="blue" onPress={() => navigation.navigate("Cadastro")} />
+                <Button title='Entre agora!' color="black" onPress={() => navigation.navigate("Login")} />
+                <Button title='Cadastre-se' color="red" onPress={() => navigation.navigate("Cadastro")} />
             </View>
 
         </View>
