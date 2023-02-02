@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "app-firebase-auth",
-    "slug": "app-firebase-auth",
+    "name": "App Auth",
+    "slug": "app-auth",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a31b09ca-2a7c-41e0-8cb0-7ded5e530ce2"
+      }
+    },
+    "owner": "tiago.tecinternet"
   }
 }
