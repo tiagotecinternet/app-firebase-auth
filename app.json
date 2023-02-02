@@ -12,7 +12,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/a31b09ca-2a7c-41e0-8cb0-7ded5e530ce2"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -34,6 +35,9 @@
         "projectId": "a31b09ca-2a7c-41e0-8cb0-7ded5e530ce2"
       }
     },
-    "owner": "tiago.tecinternet"
+    "owner": "tiago.tecinternet",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
   }
 }
