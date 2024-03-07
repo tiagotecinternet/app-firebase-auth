@@ -8,6 +8,19 @@
 
 **Firebase:**
 
--   Site oficial: https://firebase.google.com/
--   Documentação: https://firebase.google.com/docs
--   Autenticação: https://firebase.google.com/docs/auth/web/start
+- Site oficial: https://firebase.google.com/
+- Documentação: https://firebase.google.com/docs
+- Autenticação: https://firebase.google.com/docs/auth/web/start
+
+## Firebase: BaaS
+
+- Back-end As A Service
+
+## Exemplos de serviços:
+
+- Banco de Dados
+- Autenticação
+- Hosting
+
+- https://console.firebase.google.com/project/app-autenticacao-d25d1/overview
+  - inserido firebaseConfig (gitignore) - Senac2022
